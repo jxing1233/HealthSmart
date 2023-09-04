@@ -1,10 +1,8 @@
-// import 'package:flutter/material.dart';
 import 'dart:convert' as convert;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-//import 'package:jasmine/classes/TrialDetailsView.dart';
 import 'package:searchfield/searchfield.dart';
 import 'dart:math';
 
@@ -33,8 +31,6 @@ class _State extends State<TrialsListView>{
 
     int minYears = minMonths ~/ 12;
     int maxYears = maxMonths ~/ 12;
-
-    // http.get(Uri.parse('http://127.0.0.1:5000/get_focuses'));
 
     String focusString = "";
 
@@ -116,8 +112,6 @@ class _State extends State<TrialsListView>{
   }
 
   Widget body(List<Trial> trialsList){
-    // parseTrials(trialsList);
-    // List<String> keys = trialsData.keys.toList();
     trialsList = filterTrials(trialsList);
     return ListView.builder(
         itemCount: trialsList.length,
@@ -196,14 +190,12 @@ class _State extends State<TrialsListView>{
 
     Set<String> all_focuses = Set();
     for (int i = 0; i < widget.trialsList.length; i++) {
-      // print(widget.trialsList[i].focus);
       for (int j = 0; j < widget.trialsList[i].focus.length; j++) {
         all_focuses.add(widget.trialsList[i].focus[j]);
       }
     }
 
     for (int i = 0; i < all_focuses.length; i++) {
-      // if (all)
       focuses_display.add(all_focuses.toList()[i].substring(0, min(all_focuses.toList()[i].length, 25)));
 
     }
@@ -211,97 +203,6 @@ class _State extends State<TrialsListView>{
     print(focuses_display);
 
     return body(widget.trialsList);
-
-    // return Column(
-    //   children: [
-    //     // ElevatedButton(
-    //     //   child: const Text("Filter"),
-    //     //   onPressed: () {
-    //     //     showDialog(
-    //     //       context: context,
-    //     //       builder: (BuildContext context) {
-    //     //         return StatefulBuilder(
-    //     //           builder: (context, setState) {
-    //     //             return AlertDialog(
-    //     //               scrollable: true,
-    //     //               title: const Text("Filter by:"),
-    //     //               content: Padding(
-    //     //                 padding: const EdgeInsets.all(8.0),
-    //     //                 child: Form(
-    //     //                   child: Column(
-    //     //                     children: [
-    //     //                       SearchField(
-    //     //                         controller: _focusController,
-    //     //                         suggestions: all_focuses
-    //     //                             .map(
-    //     //                               (e) => SearchFieldListItem(
-    //     //                             e,
-    //     //                             item: e,
-    //     //                             // Use child to show Custom Widgets in the suggestions
-    //     //                             // defaults to Text widget
-    //     //                             child: Padding(
-    //     //                               padding: const EdgeInsets.all(1.0),
-    //     //                               child: Row(
-    //     //                                 children: [
-    //     //                                   SizedBox(
-    //     //                                     width: 1,
-    //     //                                   ),
-    //     //                                   Text(e),
-    //     //                                 ],
-    //     //                               ),
-    //     //                             ),
-    //     //                           ),
-    //     //                         ).toList(),
-    //     //                       ),
-    //     //                       TextFormField(
-    //     //                         controller: _textController,
-    //     //                         decoration: const InputDecoration(
-    //     //                           labelText: "Age",
-    //     //                           hintText: "What\'s your age?",
-    //     //                         ),
-    //     //                       ),
-    //     //                       const Text("Gender"),
-    //     //                       Column(
-    //     //                         children: categoriesGender.map((category) {
-    //     //                         return FilterChip(
-    //     //                           label: Text(category),
-    //     //                           selected: selectedGender == category,
-    //     //                           onSelected: (isSelected) {
-    //     //                             setState(() {
-    //     //                               selectedGender = isSelected ? category : 'ALL';
-    //     //                               print(selectedGender);
-    //     //                             });
-    //     //                           },
-    //     //                         );
-    //     //                       }).toList(),
-    //     //                     ),
-    //     //                   ],
-    //     //                 ),
-    //     //               ),
-    //     //             ),
-    //     //
-    //     //             actions: [
-    //     //                 ElevatedButton(
-    //     //                   child: const Text("submit"),
-    //     //                 onPressed: (){ // reformat the list of trials
-    //     //                 // your code
-    //     //                   setState(() {
-    //     //                     enteredAge = _textController.text;
-    //     //                     enteredFocus = _focusController.text;
-    //     //                   });
-    //     //                 },
-    //     //               ),
-    //     //             ],
-    //     //           );
-    //     //         },
-    //     //       );
-    //     //
-    //     //     });
-    //     //   },
-    //     // ),
-    //     Expanded(child: body(widget.trialsList)),
-    //   ],
-    // );
 
   }
 }
